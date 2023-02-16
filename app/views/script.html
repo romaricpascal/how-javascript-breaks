@@ -6,7 +6,9 @@
   - code instructions
   - event handlers
 #}
-export function exportedAtTheStart() {};
+{% if renderExportStatements %}
+  export function exportedAtTheStart() {};
+{% endif %}
 
 console.log('Loaded script start')
 
@@ -22,7 +24,9 @@ onButtonClick(event => {
 
 console.log('Loaded script end')
 
-export function exportedAtTheEnd() {};
+{% if renderExportStatements %}
+  export function exportedAtTheEnd() {};
+{% endif %}
 
 function onButtonClick(handler) {
   document.addEventListener('click', event => {
