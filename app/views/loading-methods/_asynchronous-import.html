@@ -1,0 +1,5 @@
+<script type="module">
+  import("{{scriptUrl}}")
+    .then(module => console.log('Imported module', module))
+    .catch(error => console.error('Error during import', error))
+</script>

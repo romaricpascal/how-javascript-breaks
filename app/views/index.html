@@ -6,8 +6,10 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
 
 {% block content %}
 
-{% set script = params.get('script') or 'unparsable' %}
+{% set script = params.get('script') or 'no-error' %}
+{% set scriptUrl %}/public/javascripts/{{script}}.js{% endset %}
 {% set loadingMethod = params.get('loading_method') or 'script-tag' %}
+{% set loadingPartial %}./loading-methods/_{{loadingMethod}}.html{% endset %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -16,9 +18,28 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
     </h1>
     <p>
       Open your console to see how JavaScript may break depending on the error it contains,
-      and how it is loaded
+      and how it is loaded.
     </p>
+    <h2 class="govuk-heading-l">Interact with the page</h2>
+    <p>Some of the scripts will only break when interacting. Click on the button thereafter to trigger such breakage.</p>
 
+    {{ govukButton({
+      text: "Simulate interaction",
+      type: "button",
+      classes: "govuk-button--secondary js-interact-with-me"
+    }) }}
+    <script>
+      // Track when various load-related events get run with respect to scripts loading
+      // Most times, they'll run after scripts load, but may run at different times (async, defer...)
+      window.addEventListener('DOMContentLoaded', console.log)
+      window.addEventListener('load', console.log)
+      window.addEventListener('pageshow', console.log)
+      // Get some feedback from button interaction
+      document.querySelector('.js-interact-with-me').addEventListener('click', function() {
+        console.log('Interacted with button')
+      })
+    </script>
+    <h2 class="govuk-heading-l">Configure scenario</h2>
     <form>
       {{ govukRadios({
         name: "script",
@@ -29,6 +50,10 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
           }
         },
         items: [
+          {
+            value: 'no-error',
+            text: 'It does not break'
+          },
           {
             value: "unparsable",
             text: "Unparsable syntax"
@@ -55,6 +80,22 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
           {
             value: "script-tag",
             html: "Script tag (<code>&lt;script&gt;</code>)"
+          },
+          {
+            value: "script-type-module",
+            html: "Module script tag (<code>&lt;script type=\"module\"&gt;</code>)"
+          },
+          {
+            value: "synchronous-import",
+            html: "Synchronous import (<code>import \"&lt;SCRIPT_URL&gt;\"</code>)"
+          },
+          {
+            value: "asynchronous-import",
+            html: "Asynchronous import (<code>import(\"&lt;SCRIPT_URL&gt;\")</code>)"
+          },
+          {
+            value: "synchronous-named-import",
+            html: "Synchronous import (<code>import * as imported from (\"&lt;SCRIPT_URL&gt;\")</code>)"
           }
         ]
       }) }}
@@ -62,10 +103,22 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
         text: "Load JavaScript"
       }) }}
     </form>
-  
-    {% include "./loading-methods/_" + loadingMethod + ".html" %}
 
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+    <script data-position="before" src="/public/javascripts/log-execution.js"></script>
+    <script async data-position="before" src="/public/javascripts/log-execution.js"></script>
+    <script data-position="before" defer src="/public/javascripts/log-execution.js"></script>
+    <script type="module">
+      console.log('before', ':', 'module script ran')
+    </script>
+  
+    {% include loadingPartial %}
+
+    <script data-position="after" src="/public/javascripts/log-execution.js"></script>
+    <script async data-position="after" src="/public/javascripts/log-execution.js"></script>
+    <script data-position="after" defer src="/public/javascripts/log-execution.js"></script>
+    <script type="module">
+      console.log('after',':', 'module script ran')
+    </script>
   </div>
 </div>
 

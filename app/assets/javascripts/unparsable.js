@@ -10,7 +10,9 @@
  * on the page will still execute (but will need to guard against the possibility)
  * of whatever the script was bringing in not to be there.
  */
-console.log('Before unknown syntax')
+export function exportedAtTheStart() {};
+
+console.log('Loaded script start')
 
 // The do-expression is not supported anywhere yet
 // so browsers will choke when parsing the script
@@ -19,4 +21,6 @@ let x = do {
   5 + 3 
 }
 
-console.log('Before unknown syntax')
+console.log('Loaded script end')
+
+export function exportedAtTheEnd() {};
