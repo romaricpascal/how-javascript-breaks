@@ -1,7 +1,3 @@
-export function exportedAtTheStart() {};
-
-console.log('Loaded script start')
-
 // Simulates a 3rd party listener registered before breaking code
 onButtonClick(event => {
   console.log('In click listener registered before')
@@ -27,6 +23,3 @@ function onButtonClick(handler) {
     }
   })
 }
-console.log('Loaded script end')
-
-export function exportedAtTheEnd() {};

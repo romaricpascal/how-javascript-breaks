@@ -10,17 +10,9 @@
  * on the page will still execute (but will need to guard against the possibility)
  * of whatever the script was bringing in not to be there.
  */
-export function exportedAtTheStart() {};
-
-console.log('Loaded script start')
-
 // The do-expression is not supported anywhere yet
 // so browsers will choke when parsing the script
 // https://github.com/tc39/proposal-do-expressions
 let x = do {
   5 + 3 
 }
-
-console.log('Loaded script end')
-
-export function exportedAtTheEnd() {};
