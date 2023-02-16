@@ -1,9 +1,33 @@
+{#
+  The extra JavaScript code simulates service code being bundled
+  with our own code. It lets us check, when our code breaks,
+  what happens to:
+  - potential exports
+  - code instructions
+  - event handlers
+#}
 export function exportedAtTheStart() {};
 
 console.log('Loaded script start')
 
+onButtonClick(event => {
+  console.log('In click listener registered before')
+})
+
 {{scriptContent | safe}}
+
+onButtonClick(event => {
+  console.log('In click listener registered after')
+})
 
 console.log('Loaded script end')
 
 export function exportedAtTheEnd() {};
+
+function onButtonClick(handler) {
+  document.addEventListener('click', event => {
+    if (event.target.closest('.js-interact-with-me')) {
+      handler(event)
+    }
+  })
+}

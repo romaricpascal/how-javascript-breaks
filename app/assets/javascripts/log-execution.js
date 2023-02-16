@@ -1,3 +1,6 @@
+/**
+ * Just a generic way to log script loading (at least for non-module scripts)
+ */
 // Module scripts won't have a `currentScript`
 // but `import.meta` cannot appear in a non-script module 😭
 if (document.currentScript) {

@@ -1,25 +1,15 @@
-// Simulates a 3rd party listener registered before breaking code
+/**
+ * This calls a non-existing api upon user interaction,
+ * allowing to check what would happen to other handlers
+ * on the same interaction.
+ * 
+ * The whole module will execute without error until clicking
+ * on the button
+ */
+// Function is defined in `script.html`
 onButtonClick(event => {
-  console.log('In click listener registered before')
-})
-
-onButtonClick(event => {
-  console.log('Before listener')
+  console.log('Listener start')
   doSomethingThatDoesNotExist()
   // We won't reach that
-  console.log('After listener')
+  console.log('Listener end')
 })
-
-// Simulates a 3rd party listener registered after breaking code
-onButtonClick(event => {
-  console.log('In click listener registered after')
-})
-
-
-function onButtonClick(handler) {
-  document.addEventListener('click', event => {
-    if (event.target.closest('.js-interact-with-me')) {
-      handler(event)
-    }
-  })
-}
