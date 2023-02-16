@@ -6,14 +6,64 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
 
 {% block content %}
 
+{% set script = params.get('script') or 'unparsable' %}
+{% set loadingMethod = params.get('loading_method') or 'script-tag' %}
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
-
     <h1 class="govuk-heading-xl">
-      {{ serviceName }}
+      How JavaScript loading breaks?
     </h1>
+    <p>
+      Open your console to see how JavaScript may break depending on the error it contains,
+      and how it is loaded
+    </p>
+
+    <form>
+      {{ govukRadios({
+        name: "script",
+        value: script,
+        fieldset: {
+          legend: {
+            text: "How should script break?"
+          }
+        },
+        items: [
+          {
+            value: "unparsable",
+            text: "Unparsable syntax"
+          },
+          {
+            value: "non-existing-api-initial",
+            text: "Non-existing API (initial execution)"
+          },
+          {
+            value: "non-existing-api-interaction",
+            text: "Non-existing API (upon interaction)"
+          }
+        ]
+      }) }}
+      {{ govukRadios({
+        name: "loading_method",
+        value: loadingMethod,
+        fieldset: {
+          legend: {
+            text: "How should script be loaded?"
+          }
+        },
+        items: [
+          {
+            value: "script-tag",
+            html: "Script tag (<code>&lt;script&gt;</code>)"
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Load JavaScript"
+      }) }}
+    </form>
+  
+    {% include "./loading-methods/_" + loadingMethod + ".html" %}
 
     {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
   </div>
