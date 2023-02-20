@@ -74,23 +74,52 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
         items: [
           {
             value: "script-tag",
-            html: "Script tag (<code>&lt;script&gt;</code>)"
+            html: "Script tag",
+            hint: {
+              html: "<code>&lt;script&gt;</code>"
+            }
           },
           {
             value: "script-type-module",
-            html: "Module script tag (<code>&lt;script type=\"module\"&gt;</code>)"
+            html: "Module script tag",
+            hint: {
+              html: "<code>&lt;script type=\"module\"&gt;</code>"
+            }
           },
           {
             value: "synchronous-import",
-            html: "Synchronous import (<code>import \"&lt;SCRIPT_URL&gt;\"</code>)"
-          },
-          {
-            value: "asynchronous-import",
-            html: "Asynchronous import (<code>import(\"&lt;SCRIPT_URL&gt;\")</code>)"
+            html: "Synchronous import",
+            hint: {
+              html: "<code>import \"&lt;SCRIPT_URL&gt;\"</code>"
+            }
           },
           {
             value: "synchronous-named-import",
-            html: "Synchronous import (<code>import * as imported from (\"&lt;SCRIPT_URL&gt;\")</code>)"
+            html: "Synchronous import",
+            hint: {
+              html: "<code>import * as imported from (\"&lt;SCRIPT_URL&gt;\")</code>"
+            }
+          },
+          {
+            value: "async-import-promise",
+            html: "Asynchronous import – Promise",
+            hint: {
+              html: "<code>import(\"&lt;SCRIPT_URL&gt;\").then(...)</code>"
+            }
+          },
+          {
+            value: "async-import-iife",
+            html: "Asynchronous import – IIFE await",
+            hint: {
+              html: "<code>(async function() { await import(\"&lt;SCRIPT_URL&gt;\") })()</code>"
+            }
+          },
+          {
+            value: "async-import-promise",
+            html: "Asynchronous import – Top level await",
+            hint: {
+              html: "<code>await import(\"&lt;SCRIPT_URL&gt;\")</code>"
+            }
           }
         ]
       }) }}
