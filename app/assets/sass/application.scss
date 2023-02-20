@@ -4,3 +4,8 @@
 // 
 
 // Add extra styles here
+.govuk-radios__divider {
+  width: auto;
+  text-align: left;
+  @include govuk-typography-responsive(24)
+}

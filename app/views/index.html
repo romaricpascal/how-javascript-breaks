@@ -41,7 +41,8 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
         value: script,
         fieldset: {
           legend: {
-            text: "How should the script break?"
+            text: "How should the script break?",
+            classes: "govuk-!-font-size-27"
           }
         },
         items: [
@@ -68,22 +69,26 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
         value: loadingMethod,
         fieldset: {
           legend: {
-            text: "How should the script be loaded?"
+            text: "How should the script be loaded?",
+            classes: "govuk-!-font-size-27"
           }
         },
         items: [
           {
+            divider: "Static loading"
+          },
+          {
             value: "script-tag",
             html: "Script tag",
             hint: {
-              html: "<code>&lt;script&gt;</code>"
+              html: "<code>&lt;script src=\"&lt;SCRIPT_URL&gt;\"&gt;</code>"
             }
           },
           {
             value: "script-type-module",
             html: "Module script tag",
             hint: {
-              html: "<code>&lt;script type=\"module\"&gt;</code>"
+              html: "<code>&lt;script type=\"module\" src=\"&lt;SCRIPT_URL&gt;\"&gt;</code>"
             }
           },
           {
@@ -101,17 +106,27 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
             }
           },
           {
+            divider: "Dynamic loading"
+          },
+          {
+            value: "document-create-el",
+            html: "Append <code>&lt;script&gt;</code> tag",
+            hint: {
+              html: "<pre><code>var s = document.createElement('script');\ns.src=\"&lt;SCRIPT_URL&gt;\";\ndocument.body.appendChild(s)</code></pre>"
+            }
+          },
+          {
             value: "async-import-promise",
             html: "Asynchronous import – Promise",
             hint: {
-              html: "<code>import(\"&lt;SCRIPT_URL&gt;\").then(...)</code>"
+              html: "<pre><code>import(\"&lt;SCRIPT_URL&gt;\")\n.then(...)</code></pre>"
             }
           },
           {
             value: "async-import-iife",
             html: "Asynchronous import – IIFE await",
             hint: {
-              html: "<code>(async function() { await import(\"&lt;SCRIPT_URL&gt;\") })()</code>"
+              html: "<pre><code>(async function() {\n await import(\"&lt;SCRIPT_URL&gt;\")\n })()</code></pre>"
             }
           },
           {
@@ -120,6 +135,16 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
             hint: {
               html: "<code>await import(\"&lt;SCRIPT_URL&gt;\")</code>"
             }
+          },
+          {
+            divider: "Protected dynamic loading"
+          },
+          {
+            value: "protected-async-import",
+            html: "Asynchronous import – Top level await",
+            hint: {
+              html: "<pre><code>(async function() {\n if (canExecute) {\n  await import(\"&lt;SCRIPT_URL&gt;\")\n }\n})()</code></pre>"
+            }
           }
         ]
       }) }}
@@ -127,7 +152,8 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
         name: 'delay',
         value: delay,
         label: {
-          text: "How many milliseconds should the server delay the response by?"
+          text: "How many milliseconds should the server delay the response by?",
+          classes: "govuk-!-font-size-27"
         },
         classes: "govuk-input--width-5",
         suffix: {

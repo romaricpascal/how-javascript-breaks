@@ -1,6 +1,17 @@
-<!-- Support bound to Promises: https://caniuse.com/promises -->
+<!-- Support bound to Promises: https://caniuse.com/promises and async import: https://caniuse.com/es6-module-dynamic-import -->
 <script type="module">
   import("{{scriptUrl}}")
-    .then(module => console.log('Imported module', module))
+    .then(function(module) {
+      console.log('Imported module', module)
+      // Service code goes here and can access `module`,
+      // it may want to pass it to its own `init` function:
+      // ```
+      // serviceInit(module)
+      // ```
+      // or expose it to window
+      // ```
+      // window.module = module
+      // ```
+    })
     .catch(error => console.error('Error during import', error))
 </script>

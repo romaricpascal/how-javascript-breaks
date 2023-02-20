@@ -1,0 +1,43 @@
+<!-- This would go in the head-->
+<script>
+  // This signals our stylesheet that users have JS enabled
+  document.body.classList.add('js-enabled')
+  // This condition would be bound to one or several features
+  // that start working in the lowest version of browsers
+  // listed in our `.browserslist`. 
+  // 
+  // As time passes, we may chose to update our `.browserslist`
+  // for which we would need to find another feature
+  // This would be a breaking change anyway so we could revisit mustard cutting
+  // at that point?
+  window.supportsGOVUKFrontend = window.Promise && 'finally' in Promise.prototype;
+  if (window.supportsGOVUKFrontend) {
+    // In these browsers, JS will not only be enabled, but enhancements
+    // will happen and off we can go. This gets set in the `<head>` to avoid
+    // flashes of unstyled components for the duration that JavaScript is loading
+    document.body.classList.add('js-enhanced')
+  }
+</script>
+<!-- 
+  This could go anywhere. `type="module"` will defer its execution, so it could be
+  lifted up to the head of the page for proximity. It can't be merged with the previous script,
+  as that would also defer the setting of the classes.
+-->
+<script type="module">
+  (async function () {
+    if (window.supportsGOVUKFrontend) {
+      const module = await import("{{scriptUrl}}")
+      console.log('Imported module', module)
+  
+      // Service code goes here and can access `module`,
+      // it may want to pass it to its own `init` function:
+      // ```
+      // serviceInit(module)
+      // ```
+      // or expose it to window
+      // ```
+      // window.module = module
+      // ```
+    }
+  })()
+</script>

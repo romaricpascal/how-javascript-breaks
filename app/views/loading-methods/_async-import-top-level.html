@@ -1,5 +1,15 @@
 <!-- Support bound to top level await: https://caniuse.com/mdn-javascript_operators_await_top_level -->
 <script type="module">
-  const GOVUKFrontend = await import("{{scriptUrl}}");
-  console.log('Imported', GOVUKFrontend)
+  const module = await import("{{scriptUrl}}");
+  console.log('Imported', module)
+
+  // Service code goes here and can access `module`,
+  // it may want to pass it to its own `init` function:
+  // ```
+  // serviceInit(module)
+  // ```
+  // or expose it to window
+  // ```
+  // window.module = module
+  // ```
 </script>

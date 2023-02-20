@@ -1,0 +1,9 @@
+<script>
+  const script = document.createElement('script');
+  script.src = "{{scriptUrl}}"
+  script.onload = function() {
+    // Service code goes here and can access the module
+    // provided it assigns itself to window
+  }
+  document.head.appendChild(script)
+</script>
