@@ -6,10 +6,18 @@
  * The whole module will execute without error until clicking
  * on the button
  */
+onButtonClick(event => {
+  console.log('Listener before, in same script')
+})
+
 // Function is defined in `script.html`
 onButtonClick(event => {
   console.log('Listener start')
   doSomethingThatDoesNotExist()
   // We won't reach that
   console.log('Listener end')
+})
+
+onButtonClick(event => {
+  console.log('Listener after, in same script')
 })

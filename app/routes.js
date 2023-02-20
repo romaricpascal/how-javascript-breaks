@@ -11,6 +11,12 @@ const router = govukPrototypeKit.requests.setupRouter()
 
 // Allows to customise render a script with a specific delay
 router.get('/:scriptName.js', async function (request, response) {
+
+  // Simulates the script not being able to load, whether from server or network error
+  if (request.params.scriptName == 'loading-error') {
+    return response.sendStatus(500)
+  }
+
   const scriptPath = `app/assets/javascripts/${request.params.scriptName}.js`;
   const delay = request.query.delay || '0'; // String for consistency with other handler
 

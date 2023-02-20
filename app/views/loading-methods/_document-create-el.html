@@ -1,9 +1,12 @@
-<script>
+<script onerror="console.log('Script loading errored', window.error)">
   const script = document.createElement('script');
   script.src = "{{scriptUrl}}"
   script.onload = function() {
-    // Service code goes here and can access the module
-    // provided it assigns itself to window
+    // Service code goes here and can access the module's content
+    // provided the module assigns them to window.
+    //
+    // This function could also dispatch an event notifying the service
+    // that the module is loaded so the service code knows everything is ready.
   }
   document.head.appendChild(script)
 </script>

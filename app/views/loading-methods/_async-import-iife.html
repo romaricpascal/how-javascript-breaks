@@ -1,5 +1,5 @@
 <!-- Support bound to async functions: https://caniuse.com/mdn-javascript_operators_await -->
-<script type="module">
+<script type="module" onerror="console.log('Script loading errored', window.error)">
   ((async function () {
     const module = await import("{{scriptUrl}}");
     console.log('Imported', module)
