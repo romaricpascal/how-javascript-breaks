@@ -1,4 +1,4 @@
-<script onerror="console.log('Script loading errored', window.error)">
+<script onerror="console.log('Script loading errored', event)">
   const script = document.createElement('script');
   script.src = "{{scriptUrl}}"
   script.onload = function() {

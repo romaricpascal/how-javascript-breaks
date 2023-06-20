@@ -23,7 +23,7 @@
   lifted up to the head of the page for proximity. It can't be merged with the previous script,
   as that would also defer the setting of the classes.
 -->
-<script type="module" onerror="console.log('Script loading errored', window.error)">
+<script type="module" onerror="console.log('Script loading errored', event)">
   (async function () {
     if (window.supportsGOVUKFrontend) {
       const module = await import("{{scriptUrl}}")
