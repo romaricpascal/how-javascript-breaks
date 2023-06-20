@@ -11,9 +11,21 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
     <h1 class="govuk-heading-xl">
       How JavaScript loading breaks?
     </h1>
+    <p class="govuk-body-l">
+      This page explores how JavaScript breakages affects other scripts and/or bundled pieces of code,
+      logging what ran alongside breaking code in the console.
     <p>
-      Open your console to see how JavaScript may break depending on the error it contains,
-      and how it is loaded.
+    <p>
+      The page contains <a href="https://github.com/romaricpascal/how-javascript-breaks/blob/main/app/views/index.html#L188-L202">a series of <code>&lt;script&gt;</code> tags with a variety of attributes</a>
+      that are surrounding <a href="https://github.com/romaricpascal/how-javascript-breaks/tree/main/app/views/loading-methods">your selection of method for loading the potentially problematic script.</a>
+      This allows to not only visualise the different timings, but see if any adjacent script would be impacted by an error.
+    </p>
+    <p>
+      The potentially problematic script is made of your <a href="https://github.com/romaricpascal/how-javascript-breaks/tree/main/app/assets/javascripts">selection of breakage</a>,
+      <a href="https://github.com/romaricpascal/how-javascript-breaks/blob/main/app/views/script.html">wrapped in a script with various logging statements</a> to identify what still gets to run despite the breakage.
+    </p>
+    <p>
+      So pick a way to break, a way to load, open your devtools and have a look!
     </p>
     <h2 class="govuk-heading-l">Interact with the page</h2>
     <p>Some of the scripts will only break when interacting. Click on the button thereafter to trigger such breakage.</p>
@@ -65,6 +77,9 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
           {
             value: "non-existing-api-interaction",
             text: "Non-existing API (upon interaction)"
+          },
+          {
+            divider: "In older browsers (Safari 10.x, for example)"
           },
           {
             value: "spread",
