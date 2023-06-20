@@ -1,0 +1,21 @@
+<script type="module" onerror="console.log('Script loading errored', window.error)">
+  ((async function () {
+    import("{{scriptUrl}}")
+      .then(module => {
+        console.log('Imported', module)
+
+        // Service code goes here and can access `module`,
+        // it may want to pass it to its own `init` function:
+        // ```
+        // serviceInit(module)
+        // ```
+        // or expose it to window
+        // ```
+        // window.module = module
+        // ```
+      })
+      .catch(e => {
+        console.error('Error caught', e);
+      })
+  }))()
+</script>

@@ -179,6 +179,13 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
             hint:{
               html: "<pre><code>(async function() {\n try {\n  await import(\"&lt;SCRIPT_URL&gt;\")\n } catch (e) { }\n})()</code></pre>"
             }
+          },
+          {
+            value: "try-async-import-promise",
+            html: "Asynchronous import - <code>try/catch</code> + promise",
+            hint:{
+              html: "<pre><code>(async function() {\n try {\n  import(\"&lt;SCRIPT_URL&gt;\").then(/*...*/)\n } catch (e) { }\n})()</code></pre>"
+            }
           }
         ]
       }) }}
