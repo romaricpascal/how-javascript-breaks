@@ -65,6 +65,14 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
           {
             value: "non-existing-api-interaction",
             text: "Non-existing API (upon interaction)"
+          },
+          {
+            value: "spread",
+            text: "Spread operator"
+          },
+          {
+            value: "async-await",
+            text: "Async/Await"
           }
         ]
       }) }}
@@ -145,9 +153,16 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
           },
           {
             value: "protected-async-import",
-            html: "Asynchronous import – Top level await",
+            html: "Asynchronous import – <code>if</code>",
             hint: {
               html: "<pre><code>(async function() {\n if (canExecute) {\n  await import(\"&lt;SCRIPT_URL&gt;\")\n }\n})()</code></pre>"
+            }
+          },
+          {
+            value: "try-async-import",
+            html: "Asynchronous import - <code>try/catch</code>",
+            hint:{
+              html: "<pre><code>(async function() {\n try {\n  await import(\"&lt;SCRIPT_URL&gt;\")\n } catch (e) { }\n})()</code></pre>"
             }
           }
         ]
