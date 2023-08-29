@@ -207,6 +207,48 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
       }) }}
     </form>
 
+    <script>
+      // Add some listeners to events
+      document.addEventListener('error', function(event) {
+        console.log('document - before callback', event)
+      })
+      document.onerror = function(event) {
+        console.log('document - callback', event)
+      }
+      document.addEventListener('error', function(event) {
+        console.log('document - after callback', event)
+      })
+      document.addEventListener('error', function(event) {
+        console.log('document - capture', event)
+      }, true)
+
+      window.addEventListener('error', function(event) {
+        console.log('window - before callback', event)
+      })
+      window.onerror = function(event) {
+        console.log('window - callback', event)
+      }
+      window.addEventListener('error', function(event) {
+        console.log('window - after callback', event)
+      })
+      window.addEventListener('error', function(event) {
+        console.log('window - capture', event)
+      }, true)
+
+      window.addEventListener('unhandledrejection', function(event) {
+        console.log('window - capture', event)
+      }, true)
+      window.addEventListener('unhandledrejection', function(event) {
+        console.log('window - before callback', event)
+      })
+      window.onunhandledrejection = function(event) {
+        console.log('window - callback', event)
+      }
+      window.addEventListener('unhandledrejection', function(event) {
+        console.log('window - before callback', event)
+      })
+      
+    </script>
     <script data-position="before" src="/public/javascripts/log-execution.js"></script>
     <script async data-position="before" src="/public/javascripts/log-execution.js"></script>
     <script data-position="before" defer src="/public/javascripts/log-execution.js"></script>
