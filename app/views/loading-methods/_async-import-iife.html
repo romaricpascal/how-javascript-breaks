@@ -1,5 +1,7 @@
 <!-- Support bound to async functions: https://caniuse.com/mdn-javascript_operators_await -->
 <script type="module" onerror="console.log('Script loading errored', event)">
+  console.log('Before dynamic import')
+
   ((async function () {
     const module = await import("{{scriptUrl}}");
     console.log('Imported', module)
@@ -14,4 +16,6 @@
     // window.module = module
     // ```
   }))()
+
+  console.log('After dynamic import')
 </script>

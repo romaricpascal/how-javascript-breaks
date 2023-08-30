@@ -1,7 +1,11 @@
 <!-- Support bound to top level await: https://caniuse.com/mdn-javascript_operators_await_top_level -->
 <script type="module" onerror="console.log('Script loading errored', event)">
+  console.log('Before dynamic import')
+
   const module = await import("{{scriptUrl}}");
   console.log('Imported', module)
+
+  console.log('After dynamic import')
 
   // Service code goes here and can access `module`,
   // it may want to pass it to its own `init` function:

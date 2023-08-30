@@ -30,11 +30,22 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
     <h2 class="govuk-heading-l">Interact with the page</h2>
     <p>Some of the scripts will only break when interacting. Click on the button thereafter to trigger such breakage.</p>
 
-    {{ govukButton({
-      text: "Simulate interaction",
-      type: "button",
-      classes: "govuk-button--secondary js-interact-with-me"
-    }) }}
+    <p>
+      {{ govukButton({
+        text: "Trigger a native 'click' event",
+        type: "button",
+        classes: "govuk-button--secondary js-interact-with-me"
+      }) }}
+
+      {{ govukButton({
+        text: "Trigger a 'click' CustomEvent",
+        type: "button",
+        classes: "govuk-button--secondary js-trigger-custom-event"
+      }) }}
+    </p>
+
+    <p>This text contains <img src="nowhere.jpg" alt="a missing image" > in order to illustrate error events for network errors.</p>
+      
     <script>
       // Track when various load-related events get run with respect to scripts loading
       // Most times, they'll run after scripts load, but may run at different times (async, defer...)
@@ -46,6 +57,7 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
         console.log('Interacted with button')
       })
     </script>
+    
     <h2 class="govuk-heading-l">Configure scenario</h2>
     <form>
       {{ govukRadios({

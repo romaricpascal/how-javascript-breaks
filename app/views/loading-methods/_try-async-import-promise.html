@@ -1,21 +1,23 @@
 <script type="module" onerror="console.log('Script loading errored', event)">
-  ((async function () {
-    import("{{scriptUrl}}")
-      .then(module => {
-        console.log('Imported', module)
+  console.log('Before dynamic import')
 
-        // Service code goes here and can access `module`,
-        // it may want to pass it to its own `init` function:
-        // ```
-        // serviceInit(module)
-        // ```
-        // or expose it to window
-        // ```
-        // window.module = module
-        // ```
-      })
-      .catch(e => {
-        console.error('Error caught', e);
-      })
-  }))()
+  import("{{scriptUrl}}")
+    .then(module => {
+      console.log('Imported', module)
+
+      // Service code goes here and can access `module`,
+      // it may want to pass it to its own `init` function:
+      // ```
+      // serviceInit(module)
+      // ```
+      // or expose it to window
+      // ```
+      // window.module = module
+      // ```
+    })
+    .catch(e => {
+      console.error('Error caught', e);
+    })
+
+  console.log('After dynamic import')
 </script>

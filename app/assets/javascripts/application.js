@@ -4,5 +4,11 @@
 //
 
 window.GOVUKPrototypeKit.documentReady(() => {
-  // Add JavaScript here
+  document.querySelector('.js-trigger-custom-event').addEventListener('click', () => {
+
+    const event = new CustomEvent('click', {bubbles: true});
+    console.log('Before custom event dispatch')
+    document.querySelector('.js-interact-with-me').dispatchEvent(event);
+    console.log('After custom event dispatch')
+  })
 })

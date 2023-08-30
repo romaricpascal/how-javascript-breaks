@@ -1,5 +1,7 @@
 <!-- Support bound to Promises: https://caniuse.com/promises and async import: https://caniuse.com/es6-module-dynamic-import -->
 <script type="module" onerror="console.log('Script loading errored', event)">
+  console.log('Before dynamic import')
+
   import("{{scriptUrl}}")
     .then(function(module) {
       console.log('Imported module', module)
@@ -14,4 +16,6 @@
       // ```
     })
     .catch(error => console.error('Error during import', error))
+  
+  console.log('After dynamic import')
 </script>
